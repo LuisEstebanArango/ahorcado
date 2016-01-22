@@ -1,0 +1,22 @@
+{
+  "name": "ahorcado",
+  "version": "0.0.0",
+  "homepage": "https://github.com/LuisEstebanArango/ahorcado",
+  "authors": [
+    "luisesteban <estebanarango14@hotmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9"
+  }
+}

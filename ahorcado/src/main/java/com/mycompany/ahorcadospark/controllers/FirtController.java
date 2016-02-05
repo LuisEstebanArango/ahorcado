@@ -9,6 +9,7 @@ import com.mycompany.ahorcadospark.JsonUtil;
 import com.mycompany.ahorcadospark.services.FirstService;
 import spark.Request;
 import spark.Response;
+import spark.Spark;
 import static spark.Spark.before;
 import static spark.Spark.get;
 import static spark.Spark.put;
@@ -42,6 +43,10 @@ public class FirtController {
         get("/letter/:letter", (req, res) -> {
             firtService.newLetter(req.params("letter"));
             return JsonUtil.toJson(firtService.ahorcado.getGame());
+        });
+
+        Spark.after((req, res) -> {
+            System.out.println(firtService.ahorcado.getGame());
         });
     }
 }

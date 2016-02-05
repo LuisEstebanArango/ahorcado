@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.ahorcadospark.data;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.List;
  * @author Luis Esteban
  */
 public class Game {
-    
+
     private String shownWord = "";
     private List<Character> letter;
     private int intentos = 0;
@@ -39,7 +38,7 @@ public class Game {
     public void setLetter(List<Character> letter) {
         this.letter = letter;
     }
-    
+
     public int getIntentos() {
         return intentos;
     }
@@ -57,13 +56,18 @@ public class Game {
     }
 
     void incrementarIntentos() {
-        intentos++;
+        ++intentos;
     }
 
     void addChar(char j) {
         letter.add(j);
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "shownWord: " + shownWord + "\n"
+                + "intentos: " + intentos + "\n"
+                + "maxIntentos: " + maxIntentos + "\n";
+    }
+
 }

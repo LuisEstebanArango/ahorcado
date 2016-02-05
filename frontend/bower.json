@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.9"
+    "angular": "~1.4.9",
+    "lodash": "~4.1.0"
   }
 }

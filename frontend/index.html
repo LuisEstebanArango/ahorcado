@@ -3,72 +3,65 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title> Ahorcado </title>
+	<title>  </title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<!-- Custom styles for this template -->
-	<link href="blog.css" rel="stylesheet">
+	<link href="styles/blog.css" rel="stylesheet">
 
 </head>
-<body>
-	<div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-          <a class="blog-nav-item" href="#">Nuevo Juego</a><!-- add class 'active' to active the menu -->
-          <a class="blog-nav-item" href="#">Press</a>
-          <a class="blog-nav-item" href="#">New hires</a>
-          <a class="blog-nav-item" href="#">About</a>
-        </nav>
+<body ng-app="app">
+  <div ng-controller="TodoListController as todoList">
+      <div class="blog-masthead">
+        <div class="container">
+          <nav class="blog-nav">
+            <a class="blog-nav-item" ng-click="todoList.newGame()" href="#">Nuevo Juego</a><!-- add class 'active' to active the menu -->
+          </nav>
+        </div>
       </div>
-    </div>
 
-    <div class="container container-body">
+      <div class="container container-body">
 
         <div class="row">
-          	<div class="blog-main">
-      				<button class="btn btn-default" type="submit">A</button>
-      				<button class="btn btn-default" type="submit">B</button>
-      				<button class="btn btn-default" type="submit">C</button>
-      				<button class="btn btn-default" type="submit">D</button>
-      				<button class="btn btn-default" type="submit">E</button>
-      				<button class="btn btn-default" type="submit">F</button>
-      				<button class="btn btn-default" type="submit">G</button>
-      				<button class="btn btn-default" type="submit">H</button>
-      				<button class="btn btn-default" type="submit">I</button>
-      				<button class="btn btn-default" type="submit">J</button>
-      				<button class="btn btn-default" type="submit">K</button>
-      				<button class="btn btn-default" type="submit">L</button>
-      				<button class="btn btn-default" type="submit">M</button>
-      				<button class="btn btn-default" type="submit">N</button>
-      				<button class="btn btn-default" type="submit">O</button>
-      				<button class="btn btn-default" type="submit">P</button>
-      				<button class="btn btn-default" type="submit">Q</button>
-      				<button class="btn btn-default" type="submit">R</button>
-      				<button class="btn btn-default" type="submit">S</button>
-      				<button class="btn btn-default" type="submit">T</button>
-      				<button class="btn btn-default" type="submit">U</button>
-      				<button class="btn btn-default" type="submit">V</button>
-      				<button class="btn btn-default" type="submit">W</button>
-      				<button class="btn btn-default" type="submit">X</button>
-      				<button class="btn btn-default" type="submit">Y</button>
-      				<button class="btn btn-default" type="submit">Z</button>
-          	</div>
-      	</div>
+          <div class="blog-main">
+            <button class="btn btn-default" type="submit" ng-repeat="abc in todoList.todos"
+              ng-disabled="!abc.done" ng-click="todoList.sendLetter(abc.text)">{{abc.text}}</button>
+          </div>
+        </div>
 
         <div class="row">
           <p id="word">
-            LETRAS
+            {{todoList.word}}
+          </p>
+
+          <div id="winner">
+            <div class="alert alert-success" role="alert">EN HORA BUENA, HAS GANADO</div>
+          </div>
+
+          <div id="loser">
+            <div class="alert alert-danger" role="alert">HAS PERDIDO</div>
+          </div>
+
+          <br>
+          <p class="text-center"><!--TODO Centrar imagen-->
+            <img ng-src="{{todoList.path}}" class="img-responsive" alt="Responsive image">
           </p>
 
           <p>
-            Número de intentos:
+            Número de intentos: {{todoList.attempts}}
           </p>
           <p>
-            Número de intentos permitidos:
+            Número de intentos permitidos: {{todoList.totalAttempts}}
           </p>
         </div>
-  	</div>
-    <script src="/bower_components/angular/angular.js"></script>
+      </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="/bower_components/angular/angular.js"></script>
+
+  <script src="/scripts/todo.js"></script>
+  <script src="/bower_components/lodash/lodash.js"></script>
 
 </body>
 </html>

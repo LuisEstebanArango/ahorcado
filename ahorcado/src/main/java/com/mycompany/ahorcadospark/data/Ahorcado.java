@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.ahorcadospark.data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,12 +13,12 @@ import java.util.List;
  * @author Luis Esteban
  */
 public class Ahorcado {
-    
+
     private List<String> words;
     private String hiddenWord = "";
     private Game game;
-    
-    public Ahorcado(){
+
+    public Ahorcado() {
         game = new Game();
         words = new ArrayList<String>();
         words.add("COLOMBIA");
@@ -31,63 +29,64 @@ public class Ahorcado {
         words.add("NICARAGUA");
         words.add("VENEZUELA");
     }
-    
-    public void selectWord(){
-        hiddenWord = words.get((int)(words.size() * Math.random()));
+
+    public void selectWord() {
+        hiddenWord = words.get((int) (words.size() * Math.random()));
         game = new Game();
         String shownWord = "";
         for (int i = 0; i < hiddenWord.length(); i++) {
-            shownWord += "_";
+            shownWord += i + "";
         }
         game.setShownWord(shownWord);
         //Arrays.stream(words)
     }
-    
-    public void isChar(char j){
-        
-        if(game.getLetter().stream().filter(e -> e == j).count() > 0){
+
+    public void isChar(char j) {
+
+        if (game.getLetter().stream().filter(e -> e == j).count() > 0) {
             game.incrementarIntentos();
             return;
         }
-        
+
         game.addChar(j);
-        
+
         String temp = "";
-        boolean isChar = true;
+        boolean isChar = false;
         for (int i = 0; i < hiddenWord.length(); i++) {
-            if(j == hiddenWord.charAt(i)){
+            if (j == hiddenWord.charAt(i)) {
                 temp += hiddenWord.charAt(i);
-            }else{
-                isChar = false;
+                isChar = true;
+            } else {
                 temp += game.getShownWord().charAt(i);
             }
         }
-        if(!isChar)
+        if (!isChar) {
             game.incrementarIntentos();
+        }
         game.setShownWord(temp);
     }
-    
+
     /*public void selectWord(){
-    hiddenWord = words.get((int)(words.size() * Math.random()));
-    intentos = 0;
-    shownWord = "";
-    for (int i = 0; i < hiddenWord.length(); i++) {
-    shownWord += "_";
-    }
-    //Arrays.stream(words)
-    }
-    public void isChar(char j){
-    String temp = "";
-    for (int i = 0; i < hiddenWord.length(); i++) {
-    if(j == hiddenWord.charAt(i)){
-    temp += hiddenWord.charAt(i);
-    }else{
-    temp += shownWord.charAt(i);
-    intentos++;
-    }
-    }
-    shownWord = temp;
-    }*/
+     hiddenWord = words.get((int)(words.size() * Math.random()));
+     intentos = 0;
+     shownWord = "";
+     for (int i = 0; i < hiddenWord.length(); i++) {
+     shownWord += "_";
+     }
+     //Arrays.stream(words)
+     }
+     public void isChar(char j){
+     String temp = "";
+     for (int i = 0; i < hiddenWord.length(); i++) {
+     if(j == hiddenWord.charAt(i)){
+     temp += hiddenWord.charAt(i);
+     }else{
+     temp += shownWord.charAt(i);
+     intentos++;
+     }
+     }
+     shownWord = temp;
+     }*/
     public Game getGame() {
         return game;
     }
@@ -95,5 +94,5 @@ public class Ahorcado {
     public void setGame(Game game) {
         this.game = game;
     }
-    
+
 }

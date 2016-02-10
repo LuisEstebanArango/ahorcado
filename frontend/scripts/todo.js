@@ -5,6 +5,9 @@ angular.module('app', [])
     todo.totalAttempts = 0;
     todo.word = "";
     todo.path = "";
+    todo.isWinner = false;
+    todo.isLoser = false;
+    todo.answer = "";
 
     todo.newGame = function() {
       $http.put('/word').success(function(data){
@@ -12,15 +15,18 @@ angular.module('app', [])
         todo.totalAttempts = data.maxIntentos;
         todo.word = data.shownWord;
         todo.enabledBotons();
+      todo.changeImage();
       }).error(function(error){
         console.log(error);
       });
+      todo.isWinner = false;
+      todo.isLoser = false;
       /*$(document).ready(function(){
           $("#winner").clic(function(){
               $(this).hide();
           });
       });*/
-      $("#winner").fadeIn();//slideUp(2000);//.animate({left: '250px'});
+      //$("#winner").fadeIn();//slideUp(2000);//.animate({left: '250px'});
     };
 
     todo.sendLetter = function(c){
@@ -38,6 +44,13 @@ angular.module('app', [])
         });
         if(todo.attempts >= todo.totalAttempts){
           todo.disabledBotons();
+          todo.isLoser = true;
+          $http.get("/hidden_word").success(function(data){
+            todo.answer = data;
+            console.log("todo.answer:" + todo.answer);
+          }).error(function(error){
+            console.log(error);
+          });
         }
         todo.changeImage();
         // TODO verificar si gano, mirando los intentos

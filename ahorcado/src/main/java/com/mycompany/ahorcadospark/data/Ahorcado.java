@@ -66,33 +66,28 @@ public class Ahorcado {
         game.setShownWord(temp);
     }
 
-    /*public void selectWord(){
-     hiddenWord = words.get((int)(words.size() * Math.random()));
-     intentos = 0;
-     shownWord = "";
-     for (int i = 0; i < hiddenWord.length(); i++) {
-     shownWord += "_";
-     }
-     //Arrays.stream(words)
-     }
-     public void isChar(char j){
-     String temp = "";
-     for (int i = 0; i < hiddenWord.length(); i++) {
-     if(j == hiddenWord.charAt(i)){
-     temp += hiddenWord.charAt(i);
-     }else{
-     temp += shownWord.charAt(i);
-     intentos++;
-     }
-     }
-     shownWord = temp;
-     }*/
     public Game getGame() {
         return game;
     }
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public List<String> getWords() {
+        return words;
+    }
+
+    public void setWords(List<String> words) {
+        this.words = words;
+    }
+
+    public String getHiddenWord() {
+        return hiddenWord;
+    }
+
+    public void setHiddenWord(String hiddenWord) {
+        this.hiddenWord = hiddenWord;
     }
 
 }

@@ -35,11 +35,11 @@
           </p>
 
           <div id="winner">
-            <div class="alert alert-success" role="alert">EN HORA BUENA, HAS GANADO</div>
+            <div class="alert alert-success" ng-show="todoList.isWinner" role="alert"><h2>EN HORA BUENA, HAS GANADO</h2></div>
           </div>
 
           <div id="loser">
-            <div class="alert alert-danger" role="alert">HAS PERDIDO</div>
+            <div class="alert alert-danger" ng-show="todoList.isLoser" role="alert"><h2>HAS PERDIDO.</h2> La palabra era : {{todoList.answer}}</div>
           </div>
 
           <br>

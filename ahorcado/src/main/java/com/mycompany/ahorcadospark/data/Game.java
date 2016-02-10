@@ -18,6 +18,7 @@ public class Game {
     private List<Character> letter;
     private int intentos = 0;
     private int maxIntentos = 6;
+    private int state = 0; // 0 = is playing, 1 = won, 2 = lost
 
     public Game() {
         letter = new ArrayList<>();
@@ -61,6 +62,14 @@ public class Game {
 
     void addChar(char j) {
         letter.add(j);
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 
     @Override

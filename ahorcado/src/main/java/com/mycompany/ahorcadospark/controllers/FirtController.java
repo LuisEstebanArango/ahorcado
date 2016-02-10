@@ -22,6 +22,9 @@ public class FirtController {
 
     public FirtController(final FirstService firtService) {
 
+        /**
+         * Esto se ejecuto antes de entrar a cualquier endpoint
+         */
         before((req, res) -> {
             /*if(req.session(false) == null){
 
@@ -30,22 +33,42 @@ public class FirtController {
             System.out.println("Esto es antes de cualquier cosa");
         });
 
-        get("/word", (Request req, Response res) -> {
+        /**
+         * Se obtiene una palabra mostrada
+         */
+        get("/displayed_word", (Request req, Response res) -> {
             firtService.getWord();
             return JsonUtil.toJson(firtService.ahorcado.getGame());
         });
 
+        /**
+         * Se obtiene una palabra oculta
+         */
+        get("/hidden_word", (Request req, Response res) -> {
+            return JsonUtil.toJson(firtService.ahorcado.getHiddenWord());
+        });
+
+        /**
+         * Se inicia el juego y se selecciona aleatoriamente una palabra
+         */
         put("/word", (req, res) -> {
             firtService.selectWord();
             return JsonUtil.toJson(firtService.ahorcado.getGame());
         });
 
+        /**
+         * Se verifica si la letra que llega se encuentra en la palabra
+         */
         get("/letter/:letter", (req, res) -> {
             firtService.newLetter(req.params("letter"));
             return JsonUtil.toJson(firtService.ahorcado.getGame());
         });
 
+        /**
+         * Esto se ejecuta despues de entrar a cualquier endpoint
+         */
         Spark.after((req, res) -> {
+
             System.out.println(firtService.ahorcado.getGame());
         });
     }

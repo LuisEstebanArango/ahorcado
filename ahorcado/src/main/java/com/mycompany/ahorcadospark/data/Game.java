@@ -22,6 +22,7 @@ public class Game {
 
     public Game() {
         letter = new ArrayList<>();
+        state = 0;
     }
 
     public String getShownWord() {

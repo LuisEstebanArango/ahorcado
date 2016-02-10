@@ -7,6 +7,7 @@ angular.module('app', [])
     todo.path = "";
     todo.isWinner = false;
     todo.isLoser = false;
+    todo.state = 0;
     todo.answer = "";
 
     todo.newGame = function() {
@@ -15,12 +16,11 @@ angular.module('app', [])
         todo.totalAttempts = data.maxIntentos;
         todo.word = data.shownWord;
         todo.enabledBotons();
-      todo.changeImage();
+        todo.changeImage();
+        todo.state = data.sate;
       }).error(function(error){
         console.log(error);
       });
-      todo.isWinner = false;
-      todo.isLoser = false;
       /*$(document).ready(function(){
           $("#winner").clic(function(){
               $(this).hide();
@@ -42,7 +42,8 @@ angular.module('app', [])
             }
           }
         });
-        if(todo.attempts >= todo.totalAttempts){
+        todo.state = data.state;
+        if(todo.state == 2){
           todo.disabledBotons();
           todo.isLoser = true;
           $http.get("/hidden_word").success(function(data){

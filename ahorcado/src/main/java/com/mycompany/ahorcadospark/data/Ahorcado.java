@@ -20,7 +20,7 @@ public class Ahorcado {
 
     public Ahorcado() {
         game = new Game();
-        words = new ArrayList<String>();
+        words = new ArrayList<>();
         words.add("COLOMBIA");
         words.add("ARGENTINA");
         words.add("CHILE");
@@ -38,13 +38,15 @@ public class Ahorcado {
             shownWord += i + "";
         }
         game.setShownWord(shownWord);
-        //Arrays.stream(words)
     }
 
     public void isChar(char j) {
-
+        if (!validateState()) {
+            return;
+        }
         if (game.getLetter().stream().filter(e -> e == j).count() > 0) {
             game.incrementarIntentos();
+            validateState();
             return;
         }
 
@@ -64,6 +66,25 @@ public class Ahorcado {
             game.incrementarIntentos();
         }
         game.setShownWord(temp);
+        validateState();
+    }
+
+    /**
+     * valida si se está en juego o por el contrario ganó o perdió
+     *
+     * @return false si ya ganó o perdió y true si aun tiene intentos para jugar
+     */
+    private boolean validateState() {
+        if (hiddenWord.compareTo(game.getShownWord()) == 0) {//ganó
+            game.setState(1);
+            return false;
+        }
+        if (game.getIntentos() >= game.getMaxIntentos()) {
+            game.setState(2);
+            return false;
+        }
+        game.setState(0);
+        return true;
     }
 
     public Game getGame() {

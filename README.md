@@ -16,3 +16,4 @@ usando el framework AngularJs.
 - Descargar dependencias con Bower
 
 Abrir el navegador http://localhost:4567
+Dar clic en 'Nuevo Juego' para descubrir una nueva palabra (País)

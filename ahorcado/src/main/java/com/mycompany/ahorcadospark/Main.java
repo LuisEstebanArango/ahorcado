@@ -5,8 +5,8 @@
  */
 package com.mycompany.ahorcadospark;
 
-import com.mycompany.ahorcadospark.services.FirstService;
 import com.mycompany.ahorcadospark.controllers.FirtController;
+import com.mycompany.ahorcadospark.services.FirstService;
 import spark.SparkBase;
 
 /**
@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
         //Spark.staticFileLocation("/public");
-        SparkBase.externalStaticFileLocation("/home/luis/repos/ahorcado/frontend");
+        SparkBase.externalStaticFileLocation("../frontend");
         new FirtController(new FirstService());
     }
 }

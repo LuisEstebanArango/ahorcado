@@ -23,14 +23,13 @@ public class FirtController {
     public FirtController(final FirstService firtService) {
 
         /**
-         * Esto se ejecuto antes de entrar a cualquier endpoint
+         * Esto se ejecuta antes de entrar a cualquier endpoint
          */
         before((req, res) -> {
             /*if(req.session(false) == null){
 
              }*/
             System.out.println(req.session().attributes());
-            System.out.println("Esto es antes de cualquier cosa");
         });
 
         /**

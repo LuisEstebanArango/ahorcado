@@ -147,4 +147,6 @@ angular.module('app', [])
       });
     };
 
+      todo.disabledBotons();
+
   }]);
